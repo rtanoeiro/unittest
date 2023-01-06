@@ -1,7 +1,7 @@
 '''This file contains tests for section 3'''
 
 import unittest
-from section3.main import avg
+from sections.section3.main import avg
 
 class EasyTestCase(unittest.TestCase):
     '''

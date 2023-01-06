@@ -1,7 +1,7 @@
 '''This file contains tests for section 4'''
 
 import unittest
-from section4.main import counter
+from sections.section4.main import counter
 
 class EasyTestCase(unittest.TestCase):
     '''
