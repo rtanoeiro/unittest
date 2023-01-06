@@ -1,7 +1,6 @@
 """
-Section 1 first file
+Section 3 functions file
 """
-
 
 def avg(list_numbers:list) -> float:
     """

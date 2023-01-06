@@ -4,8 +4,10 @@
         "-s",
         "./section3",
         "-p",
-        "test_*.py"
+        "*test*.py",
+        "./section4"
     ],
     "python.testing.pytestEnabled": false,
-    "python.testing.unittestEnabled": true
+    "python.testing.unittestEnabled": true,
+    "python.testing.autoTestDiscoverOnSaveEnabled": true
 }
