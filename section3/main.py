@@ -3,20 +3,7 @@ Section 1 first file
 """
 
 
-# def upper_name(name):
-#     """
-#     This function returnes the given name in upper characters
-#     input: str
-#     output: upper str
-#     """
-#     return name.upper()
-# 
-# if upper_name("Ramon") == "RAMON":
-#     print("Success!")
-# else:
-#     print("Fail!")
-
-def avg(list_numbers):
+def avg(list_numbers:list) -> float:
     """
     This function returnes the average of all given numbers
     input: str
@@ -24,5 +11,11 @@ def avg(list_numbers):
     """
     total = 0
     for num in list_numbers:
-        total += num
+        if isinstance(num, (int, float)):
+            total += num
+        else:
+            try:
+                num = int(num)
+            except TypeError("Wrong data input. Please make sure all values are numbers") as exc:
+                raise exc
     return total / len(list_numbers)
