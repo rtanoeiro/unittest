@@ -1,7 +1,9 @@
 """Challenge for section 5"""
 
 class Car:
-
+    """
+    This class represents a car, its status and speed
+    """
     def __init__(self) -> None:
         self._speed = 0
         self._start_car = False
