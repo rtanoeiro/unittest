@@ -12,13 +12,19 @@ class Car:
         """
         This function will start the car
         """
-        self._start_car = True
+        if self._start_car:
+            raise Exception("Car is already turned on")
+        else:
+            self._start_car = True
 
     def turn_off_car(self):
         """
         This function will stop the car
         """
-        self._start_car = False
+        if self.current_speed() > 0:
+            raise Exception("Car is moving, you can't turn it off")
+        else:
+            self._start_car = False
 
     def add_speed(self):
         """
