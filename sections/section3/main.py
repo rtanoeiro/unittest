@@ -2,7 +2,8 @@
 Section 3 functions file
 """
 
-def avg(list_numbers:list) -> float:
+
+def avg(list_numbers: list) -> float:
     """
     This function returnes the average of all given numbers
     input: str
@@ -15,6 +16,8 @@ def avg(list_numbers:list) -> float:
         else:
             try:
                 num = int(num)
-            except TypeError("Wrong data input. Please make sure all values are numbers") as exc:
+            except TypeError(
+                "Wrong data input. Please make sure all values are numbers"
+            ) as exc:
                 raise exc
     return total / len(list_numbers)
