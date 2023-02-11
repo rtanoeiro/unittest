@@ -1,5 +1,5 @@
 """
-@author: ramon
+@author: Ramon
 @date: 11/02/2023
     This class is going to calculate how many years will it take
     to generate passive for a given income from renting apts.
@@ -59,23 +59,12 @@ class Calculator:
                 passive_income = (
                     number_of_apartments * self.yearly_apartment_rent_income
                 )
+
             year_balance += passive_income - (
                 number_of_apartments_purchased * self.apartment_value
             )
 
-            if passive_income <= self.desired_passive_income:
-                apartments_needed = number_of_apartments
-                current_net_worth = (
-                    apartments_needed * self.apartment_value + year_balance
-                )
-
-            to_append = {
-                current_year: [
-                    number_of_apartments,
-                    year_balance,
-                    current_net_worth
-                ]
-            }
+            to_append = {current_year: [number_of_apartments, year_balance]}
             self.calculator_data.update(to_append)
 
             current_year += 1
@@ -113,12 +102,46 @@ class Calculator:
             years_needed: Return the number of years needed to reach desired passive income
         """
 
-        data_dict = self.create_dictionary()
-        data_list = list(data_dict.items())[-1]
+        net_worth = self.get_apartments_needed() * self.apartment_value
 
-        return data_list[1][2]        
+        return net_worth
 
 
-print("Years needed : ", Calculator(150000, 70000, 2019, 80000, 6666).get_years_needed())
-print("Apartments needed : ", Calculator(150000, 70000, 2019, 80000, 6666).get_apartments_needed())
-print("Final Net Worth : ",Calculator(150000, 70000, 2019, 80000, 6666).get_networth())
+print(
+    "Years needed : ", Calculator(150000, 70000, 2019, 80000, 6666).get_years_needed()
+)
+print(
+    "Apartments needed : ",
+    Calculator(150000, 70000, 2019, 80000, 6666).get_apartments_needed(),
+)
+print(
+    "Final Net Worth : ",
+    Calculator(150000, 70000, 2019, 80000, 6666).get_networth(),
+    "\n",
+)
+
+print(
+    "Years needed : ", Calculator(150000, 80000, 2019, 80000, 6666).get_years_needed()
+)
+print(
+    "Apartments needed : ",
+    Calculator(150000, 80000, 2019, 80000, 6666).get_apartments_needed(),
+)
+print(
+    "Final Net Worth : ",
+    Calculator(150000, 80000, 2019, 80000, 6666).get_networth(),
+    "\n",
+)
+
+print(
+    "Years needed : ", Calculator(150000, 90000, 2019, 80000, 6666).get_years_needed()
+)
+print(
+    "Apartments needed : ",
+    Calculator(150000, 90000, 2019, 80000, 6666).get_apartments_needed(),
+)
+print(
+    "Final Net Worth : ",
+    Calculator(150000, 90000, 2019, 80000, 6666).get_networth(),
+    "\n",
+)
