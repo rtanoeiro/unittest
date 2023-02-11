@@ -13,8 +13,8 @@ class Calculator:
         self,
         desired_passive_income: float,
         yearly_savings: float,
-        starting_year: float,
-        apartment_value: float,
+        starting_year: int,
+        apartment_value: float, 
         yearly_apartment_rent_income: float,
     ):
         self.desired_passive_income = desired_passive_income
@@ -25,12 +25,30 @@ class Calculator:
         self.calculator_data = dict()
         self.initial_passive_income = 0
 
+        if (
+            not isinstance(self.desired_passive_income, (float, int))
+            or not isinstance(self.yearly_savings, (float, int))
+            or not isinstance(self.starting_year, int)
+            or not isinstance(self.apartment_value, (float, int))
+            or not isinstance(self.yearly_apartment_rent_income, (float, int))
+        ) or (
+            isinstance(self.desired_passive_income, bool)
+            or isinstance(self.yearly_savings, bool)
+            or isinstance(self.starting_year, bool)
+            or isinstance(self.apartment_value, bool)
+            or isinstance(self.yearly_apartment_rent_income, bool)
+        ):
+            raise TypeError(
+                "All parameter values must be a number, try declaring the class again"
+            )
+
     def create_dictionary(
         self,
         year_balance=0,
         passive_income=0,
         number_of_apartments: int = 0,
-    ):
+        number_of_apartments_purchased = 0
+    ) -> dict:
         """_summary_
 
         Args:
@@ -47,7 +65,6 @@ class Calculator:
         """
 
         current_year = self.starting_year
-        number_of_apartments_purchased = 0
 
         while passive_income <= self.desired_passive_income:
 
@@ -64,8 +81,7 @@ class Calculator:
                 number_of_apartments_purchased * self.apartment_value
             )
 
-            to_append = {current_year: [number_of_apartments, year_balance]}
-            self.calculator_data.update(to_append)
+            self.calculator_data.update({current_year: [number_of_apartments, year_balance]})
 
             current_year += 1
 
@@ -77,11 +93,10 @@ class Calculator:
         Returns:
             years_needed: Return the number of years needed to reach desired passive income
         """
-        data_dict = self.create_dictionary()
 
-        data_list = list(data_dict.items())[-1]
+        key = max(self.create_dictionary(), key=int)
 
-        return data_list[0] - self.starting_year + 1
+        return key - self.starting_year + 1
 
     def get_apartments_needed(self):
         """_summary_
@@ -89,11 +104,9 @@ class Calculator:
         Returns:
             years_needed: Return the number of years needed to reach desired passive income
         """
-        data_dict = self.create_dictionary()
+        key = max(self.create_dictionary(), key=int)
 
-        data_list = list(data_dict.items())[-1]
-
-        return data_list[1][0]
+        return self.calculator_data[key][0]
 
     def get_networth(self):
         """_summary_
@@ -101,47 +114,6 @@ class Calculator:
         Returns:
             years_needed: Return the number of years needed to reach desired passive income
         """
-
         net_worth = self.get_apartments_needed() * self.apartment_value
 
         return net_worth
-
-
-print(
-    "Years needed : ", Calculator(150000, 70000, 2019, 80000, 6666).get_years_needed()
-)
-print(
-    "Apartments needed : ",
-    Calculator(150000, 70000, 2019, 80000, 6666).get_apartments_needed(),
-)
-print(
-    "Final Net Worth : ",
-    Calculator(150000, 70000, 2019, 80000, 6666).get_networth(),
-    "\n",
-)
-
-print(
-    "Years needed : ", Calculator(150000, 80000, 2019, 80000, 6666).get_years_needed()
-)
-print(
-    "Apartments needed : ",
-    Calculator(150000, 80000, 2019, 80000, 6666).get_apartments_needed(),
-)
-print(
-    "Final Net Worth : ",
-    Calculator(150000, 80000, 2019, 80000, 6666).get_networth(),
-    "\n",
-)
-
-print(
-    "Years needed : ", Calculator(150000, 90000, 2019, 80000, 6666).get_years_needed()
-)
-print(
-    "Apartments needed : ",
-    Calculator(150000, 90000, 2019, 80000, 6666).get_apartments_needed(),
-)
-print(
-    "Final Net Worth : ",
-    Calculator(150000, 90000, 2019, 80000, 6666).get_networth(),
-    "\n",
-)

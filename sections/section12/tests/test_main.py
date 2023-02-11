@@ -116,16 +116,18 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(self._calculator_obj_three.create_dictionary(), self._calculator_data_three)
 
     def test_calculate_medium_first(self):
-        pass
+        with self.assertRaises(TypeError):
+            Calculator("150000", "70000", "2019", "80000", "6666")
 
     def test_calculate_medium_second(self):
-        pass
-
+        with self.assertRaises(TypeError):
+            Calculator(True, True, True, True, False)
     def test_calculate_medium_third(self):
-        pass
+        with self.assertRaises(TypeError):
+            Calculator(150000, 90000, 2019.2, 80000, 6666)
 
     def test_calculate_hard_first(self):
-        pass
+            Calculator(None, None, None, None, None)
 
     def test_calculate_hard_second(self):
         pass
