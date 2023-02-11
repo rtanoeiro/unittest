@@ -136,6 +136,11 @@ class TestCalculate(unittest.TestCase):
     def test_calculate_hard_first(self):
         with self.assertRaises(TypeError):
             Calculator(None, None, None, None, None)
+    
+    def tearDown(self):
+        self._calculator_obj_one = None
+        self._calculator_obj_two = None
+        self._calculator_obj_three = None
 
 
 class TestGetYearsNeeded(unittest.TestCase):
@@ -153,6 +158,10 @@ class TestGetYearsNeeded(unittest.TestCase):
     def test_years_needed_easy_third(self):
         self.assertEqual(self._calculator_obj_three.get_years_needed(), 13)
 
+    def tearDown(self):
+        self._calculator_obj_one = None
+        self._calculator_obj_two = None
+        self._calculator_obj_three = None
 
 class TestGetApartmentsNeeded(unittest.TestCase):
     def setUp(self):
@@ -169,6 +178,10 @@ class TestGetApartmentsNeeded(unittest.TestCase):
     def test_apartments_needed_easy_third(self):
         self.assertEqual(self._calculator_obj_three.get_apartments_needed(), 23)
 
+    def tearDown(self):
+        self._calculator_obj_one = None
+        self._calculator_obj_two = None
+        self._calculator_obj_three = None
 
 class TestGetNetWorth(unittest.TestCase):
     def setUp(self):
@@ -184,6 +197,11 @@ class TestGetNetWorth(unittest.TestCase):
 
     def test_net_worth_easy_third(self):
         self.assertEqual(self._calculator_obj_three.get_networth(), 1840000)
+    
+    def tearDown(self):
+        self._calculator_obj_one = None
+        self._calculator_obj_two = None
+        self._calculator_obj_three = None
 
 
 if __name__ == "__main__":
