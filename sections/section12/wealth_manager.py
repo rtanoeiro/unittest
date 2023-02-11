@@ -1,7 +1,8 @@
 """
 @author: ramon
 @date: 11/02/2023
-This class is going to calculate how many years will it take to generate passive for a given income from renting apts.
+    This class is going to calculate how many years will it take
+    to generate passive for a given income from renting apts.
 """
 
 
@@ -33,9 +34,12 @@ class Calculator:
         """_summary_
 
         Args:
-            year_balance (int, optional): the year_balance of the account. Defaults to 0 as we start with nothing
-            passive_income (int, optional): the passive_income of the year. Defaults to 0 as we start with nothing
-            number_of_apartments (int, optional): the number of apartments at the end of the year. Defaults to 0 as we start with nothing
+            year_balance (int, optional): the year_balance of the account.
+                Defaults to 0 as we start with nothing
+            passive_income (int, optional): the passive_income of the year.
+                Defaults to 0 as we start with nothing
+            number_of_apartments (int, optional): the number of apartments at the end of the year.
+                Defaults to 0 as we start with nothing
 
         Returns:
             self.calculator_data: A dictionary containg the current year as Keys
@@ -59,18 +63,62 @@ class Calculator:
                 number_of_apartments_purchased * self.apartment_value
             )
 
+            if passive_income <= self.desired_passive_income:
+                apartments_needed = number_of_apartments
+                current_net_worth = (
+                    apartments_needed * self.apartment_value + year_balance
+                )
+
             to_append = {
                 current_year: [
                     number_of_apartments,
                     year_balance,
+                    current_net_worth
                 ]
             }
             self.calculator_data.update(to_append)
 
             current_year += 1
 
-        return self.calculator_data, current_year - self.starting_year
+        return self.calculator_data
+
+    def get_years_needed(self):
+        """_summary_
+
+        Returns:
+            years_needed: Return the number of years needed to reach desired passive income
+        """
+        data_dict = self.create_dictionary()
+
+        data_list = list(data_dict.items())[-1]
+
+        return data_list[0] - self.starting_year + 1
+
+    def get_apartments_needed(self):
+        """_summary_
+
+        Returns:
+            years_needed: Return the number of years needed to reach desired passive income
+        """
+        data_dict = self.create_dictionary()
+
+        data_list = list(data_dict.items())[-1]
+
+        return data_list[1][0]
+
+    def get_networth(self):
+        """_summary_
+
+        Returns:
+            years_needed: Return the number of years needed to reach desired passive income
+        """
+
+        data_dict = self.create_dictionary()
+        data_list = list(data_dict.items())[-1]
+
+        return data_list[1][2]        
 
 
-data, years_needed = Calculator(150000, 70000, 2019, 80000, 6666).create_dictionary()
-print(data, years_needed)
+print("Years needed : ", Calculator(150000, 70000, 2019, 80000, 6666).get_years_needed())
+print("Apartments needed : ", Calculator(150000, 70000, 2019, 80000, 6666).get_apartments_needed())
+print("Final Net Worth : ",Calculator(150000, 70000, 2019, 80000, 6666).get_networth())
