@@ -7,6 +7,8 @@ name = "pypi"
 black = "*"
 pylint = "*"
 coverage = "*"
+pipenv = "*"
+mypy = "*"
 
 [dev-packages]
 
