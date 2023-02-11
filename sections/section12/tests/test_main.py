@@ -76,7 +76,9 @@ class TestCalculate(unittest.TestCase):
         Year number: 2033, Apt number owned 23.0 Passive Income $169904
         You can reach a passive income of $150000, but it will take: 15 years
         """
-        self.assertEqual(self._calculator_obj_one.create_dictionary(), self._calculator_data_one)
+        self.assertEqual(
+            self._calculator_obj_one.create_dictionary(), self._calculator_data_one
+        )
 
     def test_calculate_easy_second(self):
         """Year number: 2019, Apt number owned 1.0 Passive Income $6666
@@ -95,7 +97,9 @@ class TestCalculate(unittest.TestCase):
         Year number: 2032, Apt number owned 24.0 Passive Income $166570
         You can reach a passive income of $150000, but it will take: 14 years
         """
-        self.assertEqual(self._calculator_obj_two.create_dictionary(), self._calculator_data_two)
+        self.assertEqual(
+            self._calculator_obj_two.create_dictionary(), self._calculator_data_two
+        )
 
     def test_calculate_easy_third(self):
         """Year number: 2019, Apt number owned 1.0 Passive Income $16666
@@ -113,7 +117,9 @@ class TestCalculate(unittest.TestCase):
         Year number: 2031, Apt number owned 23.0 Passive Income $216578
         You can reach a passive income of $150000, but it will take: 13 years
         """
-        self.assertEqual(self._calculator_obj_three.create_dictionary(), self._calculator_data_three)
+        self.assertEqual(
+            self._calculator_obj_three.create_dictionary(), self._calculator_data_three
+        )
 
     def test_calculate_medium_first(self):
         with self.assertRaises(TypeError):
@@ -122,18 +128,14 @@ class TestCalculate(unittest.TestCase):
     def test_calculate_medium_second(self):
         with self.assertRaises(TypeError):
             Calculator(True, True, True, True, False)
+
     def test_calculate_medium_third(self):
         with self.assertRaises(TypeError):
             Calculator(150000, 90000, 2019.2, 80000, 6666)
 
     def test_calculate_hard_first(self):
+        with self.assertRaises(TypeError):
             Calculator(None, None, None, None, None)
-
-    def test_calculate_hard_second(self):
-        pass
-
-    def test_calculate_hard_third(self):
-        pass
 
 
 class TestGetYearsNeeded(unittest.TestCase):
@@ -151,24 +153,6 @@ class TestGetYearsNeeded(unittest.TestCase):
     def test_years_needed_easy_third(self):
         self.assertEqual(self._calculator_obj_three.get_years_needed(), 13)
 
-    def test_years_needed_medium_first(self):
-        pass
-
-    def test_years_needed_medium_second(self):
-        pass
-
-    def test_years_needed_medium_third(self):
-        pass
-
-    def test_years_needed_hard_first(self):
-        pass
-
-    def test_years_needed_hard_second(self):
-        pass
-
-    def test_years_needed_hard_third(self):
-        pass
-
 
 class TestGetApartmentsNeeded(unittest.TestCase):
     def setUp(self):
@@ -185,24 +169,6 @@ class TestGetApartmentsNeeded(unittest.TestCase):
     def test_apartments_needed_easy_third(self):
         self.assertEqual(self._calculator_obj_three.get_apartments_needed(), 23)
 
-    def test_apartments_needed_medium_first(self):
-        pass
-
-    def test_apartments_needed_medium_second(self):
-        pass
-
-    def test_apartments_needed_medium_third(self):
-        pass
-
-    def test_apartments_needed_hard_first(self):
-        pass
-
-    def test_apartments_needed_hard_second(self):
-        pass
-
-    def test_apartments_needed_hard_third(self):
-        pass
-
 
 class TestGetNetWorth(unittest.TestCase):
     def setUp(self):
@@ -218,24 +184,6 @@ class TestGetNetWorth(unittest.TestCase):
 
     def test_net_worth_easy_third(self):
         self.assertEqual(self._calculator_obj_three.get_networth(), 1840000)
-
-    def test_net_worth_medium_first(self):
-        pass
-
-    def test_net_worth_medium_second(self):
-        pass
-
-    def test_net_worth_medium_third(self):
-        pass
-
-    def test_net_worth_hard_first(self):
-        pass
-
-    def test_net_worth_hard_second(self):
-        pass
-
-    def test_net_worth_hard_third(self):
-        pass
 
 
 if __name__ == "__main__":
