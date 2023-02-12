@@ -22,7 +22,6 @@ class TestEfficiency(unittest.TestCase):
 
     def tearDown(self):
         self.EfficiencyAdding = None
-        print(self.efficiency_data)
         self.efficiency_data.clear()
 
 
